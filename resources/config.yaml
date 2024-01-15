@@ -1,4 +1,4 @@
-transfer_money_endpoint: https://3479b2e4-ffae-4fbc-aab6-2adae2b01a73.mock.pstmn.io/qa-exam/transfer
+transfer_money_endpoint: localhost:8080/qa-exam/transfer
 
 transfer_history_db:
   module_name: pymysql
