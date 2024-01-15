@@ -1,0 +1,17 @@
+bank_account:
+  amount: 1.12
+  sending_account: "1234567890"
+  receiving_account: "0987654321"
+  receiving_bank_code: "123"
+
+promptpay_mobile:
+  amount: 100.00
+  sending_account: "1234567890"
+  receiving_account: "9876543210"
+  receiving_bank_code: "456"
+
+promptpay_national_id:
+  amount: 1000000.00
+  sending_account: "1234567890"
+  receiving_account: "1234567890123"
+  receiving_bank_code: "789"
