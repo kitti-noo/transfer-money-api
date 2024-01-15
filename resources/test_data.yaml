@@ -15,3 +15,7 @@ promptpay_national_id:
   sending_account: "1234567890"
   receiving_account: "1234567890123"
   receiving_bank_code: "789"
+
+amount_over_1m_per_trans: 1000000.01
+invalid_amount: 1.123
+invalid_sending_account: 111

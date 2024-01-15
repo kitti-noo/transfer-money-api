@@ -3,8 +3,7 @@ Resource  ../import.resource
 
 *** Keywords ***
 send post request to transfer money
-  [Arguments]  ${amount}  ${send_account}  ${receive_account}  ${receive_bank_code}
-  ${amount}  Evaluate  "%.2f" % ${amount}
+  [Arguments]  ${amount}  ${send_account}  ${receive_account}  ${receive_bank_code}  ${expected_status}=200
   ${headers}  create dictionary
   ...  Content-Type=application/json
   ${request_body}  create dictionary
@@ -12,7 +11,7 @@ send post request to transfer money
   ...  sendingAccount=${send_account}
   ...  receivingAccount=${receive_account}
   ...  receivingBankCode=${receive_bank_code}
-  ${response}  post  ${transfer_money_endpoint}  headers=${headers}  json=${request_body}
+  ${response}  post  ${transfer_money_endpoint}  headers=${headers}  json=${request_body}  expected_status=${expected_status}
   [Return]  ${response}
 
 success response body should return transfer information
@@ -34,3 +33,9 @@ validate response message, response data and transfer db data
   should be equal  ${actual_res}[data][receivingAccountNo]  ${query_output}[0][2]
   should be equal as numbers  ${actual_res}[data][amount]  ${query_output}[0][3]
   should be equal  ${resp_message}  ${query_output}[0][4]
+
+error response body should return message
+  [Arguments]  ${res}  ${error_message}
+  log  ${error_message}
+  ${actual_res}  set variable  ${res.json()}
+  should be equal  ${actual_res}[error][message]  ${error_message}
